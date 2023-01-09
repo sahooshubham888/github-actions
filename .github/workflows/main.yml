@@ -1,1 +1,38 @@
+name: workflow-dispatch-inputs
+on:
+  workflow_dispatch:
+    inputs:
+      inputs-num-1:
+        description: 'first-num'
+        required: true
+      input-num-2:
+        description: 'second-num'
+        required: true
+  #push
+   # branches:
+    #- main
 
+  #pull_request:
+    #branches:
+    #- main
+env:
+  file: file1.py
+  file1: file2.py
+  first_num_1: ${{ github.event.inputs.input-num-1 }}
+  first_num_2: ${{ github.event.inputs.input-num-2 }}
+jobs:
+  check-python-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.7'
+      - name: python version
+        run: python --version
+
+      - name: python script
+        run: |
+
+          python $file $first_num_1 $first_num_2
+          python $file1 $first_num_1 $first_num_2
