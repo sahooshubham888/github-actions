@@ -34,3 +34,7 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+  
+- name: Azure Pipelines Action
+  uses: Azure/pipelines@v1.2
+            
